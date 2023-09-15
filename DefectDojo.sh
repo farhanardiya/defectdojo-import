@@ -22,6 +22,8 @@ PRODUCT_ID=$(curl -X 'GET' \
   -H 'accept: application/json' \
   -H "Authorization: Token $DEFECTDOJO_TOKEN" | jq -r '.results[0].id')
 
+echo $PRODUCT_ID
+
 # PRODUCT_ID either "null" or a number
 
 if [ "$PRODUCT_ID" = "null" ]; then
@@ -55,6 +57,9 @@ if [ "$PRODUCT_ID" = "null" ]; then
   		"regulations": [
   		]
 		}' | jq -r '.id')
+
+	echo $PRODUCT_ID
+  
 	# Create new engagement
 	ENGAGEMENT_ID=$(curl -X 'POST' \
   		"http://$IP_DEFECTDOJO:8080/api/v2/engagements/" --connect-timeout 10 \
