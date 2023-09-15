@@ -38,7 +38,7 @@ if [ "$PRODUCT_ID" = "null" ]; then
   		"tags": [
   		],
   		"name": "'$REPO_NAME'",
-  		"description": "",
+  		"description": "'$REPO_NAME'",
   		"prod_numeric_grade": null,
   		"business_criticality": null,
   		"platform": null,
@@ -72,7 +72,7 @@ if [ "$PRODUCT_ID" = "null" ]; then
   		"tags": [
   		],
   		"name": "'$PR_NAME'",
-  		"description": "",
+  		"description": "'$PR_NAME'",
   		"version": null,
   		"first_contacted": null,
   		"target_start": "'$current_date'",
@@ -120,7 +120,7 @@ else
   			"tags": [
   			],
   			"name": "'$PR_NAME'",
-  			"description": "",
+  			"description": "'$PR_NAME'",
   			"version": null,
   			"first_contacted": null,
   			"target_start": "'$current_date'",
