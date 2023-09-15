@@ -181,6 +181,8 @@ curl -X "POST" \
   -F "test_title=Trivy SCA Scan" \
   -F "deduplication_on_engagement=true"
 
+sleep 3
+
 # Trivy License POST
 curl -X "POST" \
   "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 \
