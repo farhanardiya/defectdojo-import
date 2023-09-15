@@ -28,6 +28,7 @@ echo $PRODUCT_ID
 
 if [ "$PRODUCT_ID" = "null" ]; then
     # Create new product
+    echo "Create New Product"
     PRODUCT_ID=$(curl -X 'POST' \
   		"http://$IP_DEFECTDOJO:8080/api/v2/products/" --connect-timeout 10 \
   		-H 'accept: application/json' \
@@ -61,6 +62,7 @@ if [ "$PRODUCT_ID" = "null" ]; then
 	echo $PRODUCT_ID
   
 	# Create new engagement
+ 	echo "Create New Engagement"
 	ENGAGEMENT_ID=$(curl -X 'POST' \
   		"http://$IP_DEFECTDOJO:8080/api/v2/engagements/" --connect-timeout 10 \
   		-H 'accept: application/json' \
@@ -108,6 +110,7 @@ else
   	# Engagement ID either "null" or a number
   	if [ "$ENGAGEMENT_ID" = "null" ]; then
   		# Create Engagement
+    		echo "Create New Engagement (Product Exists)"
   		ENGAGEMENT_ID=$(curl -X 'POST' \
   			"http://$IP_DEFECTDOJO:8080/api/v2/engagements/" --connect-timeout 10 \
   			-H 'accept: application/json' \
