@@ -157,7 +157,7 @@ echo $ENGAGEMENT_ID
 
 # Gitleaks POST
 curl -X "POST" \
-  "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 \
+  "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 --retry 5 --retry-delay 5 \
   -H "accept: application/json" \
   -H "Authorization: Token $DEFECTDOJO_TOKEN" \
   -H "Content-Type: multipart/form-data" \
@@ -172,28 +172,26 @@ curl -X "POST" \
   -F "test_title=Gitleaks Scan" \
   -F "deduplication_on_engagement=true"
 
-# Trivy SCA POST
+# Semgrep POST
 curl -X "POST" \
-  "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 \
+  "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 --retry 5 --retry-delay 5 \
   -H "accept: application/json" \
   -H "Authorization: Token $DEFECTDOJO_TOKEN" \
   -H "Content-Type: multipart/form-data" \
   -F "minimum_severity=Info" \
   -F "active=true" \
   -F "verified=true" \
-  -F "scan_type=Trivy Scan" \
-  -F "file=@scan.json;type=application/json" \
+  -F "scan_type=Semgrep JSON Report" \
+  -F "file=@semgrep.json;type=application/json" \
   -F "engagement=$ENGAGEMENT_ID" \
   -F "close_old_findings=false" \
   -F "push_to_jira=false" \
-  -F "test_title=Trivy SCA Scan" \
+  -F "test_title=Semgrep Scan" \
   -F "deduplication_on_engagement=true"
-
-sleep 3
 
 # Trivy License POST
 curl -X "POST" \
-  "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 \
+  "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 --retry 5 --retry-delay 5 \
   -H "accept: application/json" \
   -H "Authorization: Token $DEFECTDOJO_TOKEN" \
   -H "Content-Type: multipart/form-data" \
@@ -208,19 +206,19 @@ curl -X "POST" \
   -F "test_title=Trivy License Scan" \
   -F "deduplication_on_engagement=true"
 
-# Semgrep POST
+# Trivy SCA POST
 curl -X "POST" \
-  "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 \
+  "http://$IP_DEFECTDOJO:8080/api/v2/import-scan/" --connect-timeout 10 --retry 5 --retry-delay 5 \
   -H "accept: application/json" \
   -H "Authorization: Token $DEFECTDOJO_TOKEN" \
   -H "Content-Type: multipart/form-data" \
   -F "minimum_severity=Info" \
   -F "active=true" \
   -F "verified=true" \
-  -F "scan_type=Semgrep JSON Report" \
-  -F "file=@semgrep.json;type=application/json" \
+  -F "scan_type=Trivy Scan" \
+  -F "file=@scan.json;type=application/json" \
   -F "engagement=$ENGAGEMENT_ID" \
   -F "close_old_findings=false" \
   -F "push_to_jira=false" \
-  -F "test_title=Semgrep Scan" \
+  -F "test_title=Trivy SCA Scan" \
   -F "deduplication_on_engagement=true"
